@@ -1,0 +1,21 @@
+<div>
+  <h1>Angular HTML Table Example</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Time</th>
+      <th>Name</th>
+      <th>Systole</th>
+      <th>Diastole</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let heart of getResults()">
+      <td>{{ heart.timestamp * 1000 | date:'yyyy-MM-dd hh:mm'}}</td>
+      <td>{{ heart.deviceName }}</td>
+      <td>{{ heart.systole }}</td>
+      <td>{{ heart.diastole }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

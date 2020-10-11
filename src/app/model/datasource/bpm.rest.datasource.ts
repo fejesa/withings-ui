@@ -22,7 +22,7 @@ export class BpmRestDatasource {
     console.log('Loading');
     return this.http.request<WithingsHeart[]>(
       'GET',
-      this.url + '?from=2020-06-12&to=2020-09-12', {
+      this.url + '?from=2020-06-12&to=2020-10-12', {
         headers: myHeaders
       }
       ).pipe(catchError((error: Response) =>

@@ -1,19 +1,17 @@
 <div>
-  <table>
+  <table class="table table-sm table-bordered table-striped">
     <thead>
-    <tr>
+    <tr class="text-center">
       <th>Time</th>
-      <th>Name</th>
       <th>Systole</th>
       <th>Diastole</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let heart of records">
-      <td>{{ heart.timestamp * 1000 | date:'yyyy-MM-dd hh:mm'}}</td>
-      <td>{{ heart.deviceName }}</td>
-      <td>{{ heart.systole }}</td>
-      <td>{{ heart.diastole }}</td>
+      <td class="text-center">{{ heart.timestamp * 1000 | date:'yyyy-MM-dd hh:mm'}}</td>
+      <td [class]="getSystolicCellClass(heart.systole)">{{ heart.systole }}</td>
+      <td [class]="getDiastolicCellClass(heart.diastole)">{{ heart.diastole }}</td>
     </tr>
     </tbody>
   </table>

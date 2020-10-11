@@ -1,3 +1,16 @@
-<div>
-  Statistics
+<div class="container-fluid">
+  <div class="row">
+    <div [class]="getSystolicClass(getMinSystole())">
+      Systolic min: {{getMinSystole()}}
+    </div>
+    <div [class]="getSystolicClass(getMaxSystole())">
+      Systolic max: {{getMaxSystole()}}
+    </div>
+    <div [class]="getDiastolicClass(getMinDiastole())">
+      Diastolic min: {{getMinDiastole()}}
+    </div>
+    <div [class]="getDiastolicClass(getMaxDiastole())">
+      Diastolic max: {{getMaxDiastole()}}
+    </div>
+  </div>
 </div>

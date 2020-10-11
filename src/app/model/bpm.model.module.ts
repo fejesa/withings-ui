@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Model } from './repository.model';
+import { BpmRepository } from './repository/bpm.repository';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-import { RestDataSource, REST_URL } from './rest.datasource';
+import { BpmRestDatasource, REST_URL } from './datasource/bpm.rest.datasource';
 
 @NgModule({
   imports: [HttpClientModule, HttpClientJsonpModule],
-  providers: [Model, RestDataSource,
+  providers: [BpmRepository, BpmRestDatasource,
     { provide: REST_URL, useValue: `http://localhost:3500/heart` }]
 })
-export class ModelModule { }
+export class BpmModelModule { }

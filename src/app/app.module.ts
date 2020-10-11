@@ -1,19 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { TableComponent } from './table/table.component';
-import {ModelModule} from './model/model.module';
+import {AppComponent} from './app.component';
+import {BpmDashboardModule} from './bpm-dashboard/bpm-dashboard.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TableComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule, ModelModule
+    BrowserModule, CommonModule, BpmDashboardModule
   ],
   providers: [],
-  bootstrap: [TableComponent]
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

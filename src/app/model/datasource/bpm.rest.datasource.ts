@@ -2,12 +2,12 @@ import { Injectable, Inject, InjectionToken } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {WithingsHeart} from './withings.model';
+import {WithingsHeart} from '../data/bpm.model';
 
 export const REST_URL = new InjectionToken('rest_url');
 
 @Injectable()
-export class RestDataSource {
+export class BpmRestDatasource {
 
   constructor(private http: HttpClient,
               @Inject(REST_URL) private url: string) { }
@@ -22,7 +22,7 @@ export class RestDataSource {
     console.log('Loading');
     return this.http.request<WithingsHeart[]>(
       'GET',
-      this.url + '?from=2020-06-12&to=2020-08-12', {
+      this.url + '?from=2020-06-12&to=2020-09-12', {
         headers: myHeaders
       }
       ).pipe(catchError((error: Response) =>

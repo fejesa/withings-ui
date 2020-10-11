@@ -1,5 +1,5 @@
 <div>
-  <h1>Angular HTML Table Example</h1>
+  <h1>Angular HTML Table Example2</h1>
   <table>
     <thead>
     <tr>
@@ -10,7 +10,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let heart of getResults()">
+    <tr *ngFor="let heart of records">
       <td>{{ heart.timestamp * 1000 | date:'yyyy-MM-dd hh:mm'}}</td>
       <td>{{ heart.deviceName }}</td>
       <td>{{ heart.systole }}</td>

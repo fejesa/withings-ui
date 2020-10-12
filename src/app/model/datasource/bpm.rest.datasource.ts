@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {WithingsHeart} from '../data/bpm.model';
+import {getDateAsString} from '../../bpm-dashboard/bpm.utils';
 
 export const REST_URL = new InjectionToken('rest_url');
 
@@ -12,17 +13,20 @@ export class BpmRestDatasource {
   constructor(private http: HttpClient,
               @Inject(REST_URL) private url: string) { }
 
-  getData(): Observable<WithingsHeart[]> {
+  getData(period: Date[]): Observable<WithingsHeart[]> {
+
+    const start = getDateAsString(period[0]);
+    const end = getDateAsString(period[1]);
 
     let myHeaders = new HttpHeaders();
     myHeaders = myHeaders.set('Access-Control-Allow-Origin', '*');
     myHeaders = myHeaders.set('Content-Type', 'application/json');
     myHeaders = myHeaders.set('Accept', 'application/json, */*;q=0.5');
 
-    console.log('Loading');
+    console.log(`Loading from ${start} - ${end}`);
     return this.http.request<WithingsHeart[]>(
       'GET',
-      this.url + '?from=2020-06-12&to=2020-10-12', {
+      this.url + `?from=${start}&to=${end}`, {
         headers: myHeaders
       }
       ).pipe(catchError((error: Response) =>

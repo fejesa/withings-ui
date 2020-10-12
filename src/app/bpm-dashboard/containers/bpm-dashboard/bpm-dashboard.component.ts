@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {BpmRepository} from '../../../model/repository/bpm.repository';
 import {WithingsHeart} from '../../../model/data/bpm.model';
+import {getDefaultPeriod} from '../../bpm.utils';
 
 @Component({
   selector: 'app-bpm-dashboard',
@@ -9,11 +10,17 @@ import {WithingsHeart} from '../../../model/data/bpm.model';
 })
 export class BpmDashboardComponent {
 
-  records: WithingsHeart[];
+  private period: Date[];
 
-  constructor(private model: BpmRepository) { }
+  constructor(private model: BpmRepository) {
+    this.period = getDefaultPeriod();
+  }
 
   getRecords(): WithingsHeart[] {
-    return this.model.getRecords();
+    return this.model.getRecords(this.period);
+  }
+
+  handlePeriod(event: Date[]): void {
+    this.period = event;
   }
 }

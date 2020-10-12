@@ -1,3 +1,16 @@
-<div>
-  Period
+<div class="container-fluid">
+  <div class="row">
+    <div class="form-group">
+      <input type="text"
+             placeholder="Daterangepicker"
+             class="form-control"
+             bsDaterangepicker
+             [bsConfig]="{ isAnimated: true }"
+             [(ngModel)]="rangeValues" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+      <button (click)="handlePeriodSelection()" class="btn btn-success">Filter</button>
+    </div>
+  </div>
 </div>
+

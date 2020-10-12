@@ -1,6 +1,9 @@
-<div>
+<div class="container">
   <h1>Blood Pressure Dashboard</h1>
-  <app-bpm-stats [records]="getRecords()"></app-bpm-stats>
+  <app-bpm-period (selectPeriod)="handlePeriod($event)">
+  </app-bpm-period>
+  <app-bpm-stats [records]="getRecords()">
+  </app-bpm-stats>
   <app-bpm-table
     [records]="getRecords()">
   </app-bpm-table>

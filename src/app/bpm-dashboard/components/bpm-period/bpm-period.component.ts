@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {getDefaultPeriod} from '../../bpm.utils';
 
 @Component({
   selector: 'app-bpm-period',
@@ -6,4 +7,16 @@ import {Component, Input} from '@angular/core';
 })
 export class BpmPeriodComponent {
 
+  rangeValues: Date[];
+
+  @Output()
+  selectPeriod: EventEmitter<any> = new EventEmitter();
+
+  constructor() {
+    this.rangeValues = getDefaultPeriod();
+  }
+
+  handlePeriodSelection(): void {
+    this.selectPeriod.emit(this.rangeValues);
+  }
 }

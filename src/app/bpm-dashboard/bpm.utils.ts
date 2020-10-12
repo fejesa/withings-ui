@@ -47,3 +47,14 @@ export function isHighGrade2HypertensionDiastolic(value: number): boolean {
 export function isHighGrade3HypertensionDiastolic(value: number): boolean {
   return value >= 110;
 }
+
+export function getDefaultPeriod(): Date[] {
+  const periodStart = new Date();
+  const periodEnd = new Date();
+  periodStart.setDate(periodStart.getDate() - 7);
+  return [periodStart, periodEnd];
+}
+
+export function getDateAsString(value: Date): string {
+  return value.toISOString().split('T')[0];
+}

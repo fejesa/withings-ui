@@ -20,7 +20,7 @@ export class BpmStatsComponent {
   records: WithingsHeart[];
 
   getMinSystole(): number {
-    if (!this.records) {
+    if (this.noRecords()) {
       return;
     }
     return this.records
@@ -28,7 +28,7 @@ export class BpmStatsComponent {
   }
 
   getMaxSystole(): number {
-    if (!this.records) {
+    if (this.noRecords()) {
       return;
     }
     return this.records
@@ -36,7 +36,7 @@ export class BpmStatsComponent {
   }
 
   getMinDiastole(): number {
-    if (!this.records) {
+    if (this.noRecords()) {
       return;
     }
     return this.records
@@ -44,7 +44,7 @@ export class BpmStatsComponent {
   }
 
   getMaxDiastole(): number {
-    if (!this.records) {
+    if (this.noRecords()) {
       return;
     }
     return this.records
@@ -69,5 +69,9 @@ export class BpmStatsComponent {
       return 'col badge badge-pill badge-warning';
     }
     return 'col badge badge-pill badge-danger';
+  }
+
+  private noRecords(): boolean {
+    return !this.records || this.records.length === 0;
   }
 }

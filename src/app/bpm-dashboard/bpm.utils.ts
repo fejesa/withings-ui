@@ -1,6 +1,8 @@
+import * as moment from 'moment';
+
 // systolic
 export function isOptimalSystolic(value: number): boolean {
-  return value < 120;
+  return value > 0 && value < 120;
 }
 
 export function isNormalSystolic(value: number): boolean {
@@ -23,9 +25,13 @@ export function isGrade3HypertensionSystolic(value: number): boolean {
   return value >= 180;
 }
 
+export function isGradeHypertensionSystolic(value: number): boolean {
+  return isGrade1HypertensionSystolic(value) || isGrade2HypertensionSystolic(value) || isGrade3HypertensionSystolic(value);
+}
+
 // diastolic
 export function isOptimalDiastolic(value: number): boolean {
-  return value < 80;
+  return value > 0 && value < 80;
 }
 
 export function isNormalDiastolic(value: number): boolean {
@@ -36,16 +42,20 @@ export function isHighNormalDiastolic(value: number): boolean {
   return value >= 85 && value < 90;
 }
 
-export function isHighGrade1HypertensionDiastolic(value: number): boolean {
+export function isGrade1HypertensionDiastolic(value: number): boolean {
   return value >= 90 && value < 100;
 }
 
-export function isHighGrade2HypertensionDiastolic(value: number): boolean {
+export function isGrade2HypertensionDiastolic(value: number): boolean {
   return value >= 100 && value < 110;
 }
 
-export function isHighGrade3HypertensionDiastolic(value: number): boolean {
+export function isGrade3HypertensionDiastolic(value: number): boolean {
   return value >= 110;
+}
+
+export function isGradeHypertensionDiastolic(value: number): boolean {
+  return isGrade1HypertensionDiastolic(value) || isGrade2HypertensionDiastolic(value) || isGrade3HypertensionDiastolic(value);
 }
 
 export function getDefaultPeriod(): Date[] {
@@ -57,4 +67,11 @@ export function getDefaultPeriod(): Date[] {
 
 export function getDateAsString(value: Date): string {
   return value.toISOString().split('T')[0];
+}
+
+export function getDifferenceInHours(d1: Date, d2: Date): number {
+  const a = moment(d1);
+  const b = moment(d2);
+
+  return a.diff(b, 'hours');
 }

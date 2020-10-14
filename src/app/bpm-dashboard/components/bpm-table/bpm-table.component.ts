@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {WithingsHeart} from '../../../model/data/bpm.model';
 import {
+  isGradeHypertensionDiastolic,
+  isGradeHypertensionSystolic,
   isHighNormalDiastolic,
   isHighNormalSystolic,
   isNormalDiastolic,
@@ -25,7 +27,11 @@ export class BpmTableComponent {
     if (isHighNormalSystolic(value)) {
       return 'text-center bg-warning';
     }
-    return 'text-center bg-danger';
+    if (isGradeHypertensionSystolic(value)) {
+      return 'text-center bg-danger';
+    }
+
+    return 'text-center';
   }
 
   getDiastolicCellClass(value: number): string {
@@ -35,6 +41,13 @@ export class BpmTableComponent {
     if (isHighNormalDiastolic(value)) {
       return 'text-center bg-warning';
     }
-    return 'text-center bg-danger';
+    if (isGradeHypertensionDiastolic(value)) {
+      return 'text-center bg-danger';
+    }
+    return 'text-center';
+  }
+
+  isValidDate(value: number): boolean {
+    return value > 0;
   }
 }

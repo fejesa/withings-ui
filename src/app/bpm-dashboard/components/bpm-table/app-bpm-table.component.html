@@ -9,7 +9,8 @@
     </thead>
     <tbody>
     <tr *ngFor="let heart of records">
-      <td class="text-center">{{ heart.timestamp * 1000 | date:'yyyy-MM-dd hh:mm'}}</td>
+      <td class="text-center" *ngIf="!isValidDate(heart.timestamp)" >No data in {{ heart.nextRecInDays }} day(s)</td>
+      <td class="text-center" *ngIf="isValidDate(heart.timestamp)" >{{ heart.timestamp * 1000 | date:'yyyy-MM-dd hh:mm'}}</td>
       <td [class]="getSystolicCellClass(heart.systole)">{{ heart.systole }}</td>
       <td [class]="getDiastolicCellClass(heart.diastole)">{{ heart.diastole }}</td>
     </tr>

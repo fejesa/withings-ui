@@ -5,7 +5,8 @@ export class WithingsHeart {
               public heartRate: number,
               public deviceName: string,
               public timestamp: number,
-              public signalId?: number
+              public signalId: number,
+              public nextRecInDays?: number
               ) {}
 }
 

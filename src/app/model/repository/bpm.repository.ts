@@ -18,7 +18,6 @@ export class BpmRepository {
       this.period = period;
 
       this.dataSource.getData(this.period).subscribe(data => {
-          console.log('On next');
           this.records = data;
         },
         error => {

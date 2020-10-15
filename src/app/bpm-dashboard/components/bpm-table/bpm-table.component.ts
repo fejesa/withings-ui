@@ -14,10 +14,10 @@ import {
 
 @Component({
   selector: 'app-bpm-table',
-  templateUrl: './app-bpm-table.component.html',
+  templateUrl: './bpm-table.component.html',
   styleUrls: [
-    '../../containers/bpm-dashboard/app-bpm-dashboard.component.css',
-    './app-bpm-table.component.css'
+    '../../containers/bpm-dashboard/bpm-dashboard.component.css',
+    './bpm-table.component.css'
   ]
 })
 export class BpmTableComponent {
@@ -59,15 +59,15 @@ export class BpmTableComponent {
   getMeasureTimeCellClass(value: number): string {
     const d = new Date(value * 1000);
     if (isMorningTime(d)) {
-      return 'badge badge-pill badge-success result-label morning';
+      return 'badge badge-pill badge-success time-label morning';
     }
     if (isMiddayTime(d)) {
-      return 'badge badge-pill badge-success result-label midday';
+      return 'badge badge-pill badge-success time-label midday';
     }
     if (isEveningTime(d)) {
-      return 'badge badge-pill badge-success result-label evening';
+      return 'badge badge-pill badge-success time-label evening';
     }
-    return 'badge badge-pill badge-success result-label bedtime';
+    return 'badge badge-pill badge-success time-label bedtime';
   }
 
   isEmpty(): boolean {

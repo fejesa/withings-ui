@@ -3,7 +3,7 @@ import {getDefaultPeriod} from '../../bpm.utils';
 
 @Component({
   selector: 'app-bpm-period',
-  templateUrl: './app-bpm-period.component.html'
+  templateUrl: './bpm-period.component.html'
 })
 export class BpmPeriodComponent {
 

@@ -66,7 +66,7 @@ export function getDefaultPeriod(): Date[] {
 }
 
 export function getDateAsString(value: Date): string {
-  return value.toISOString().split('T')[0];
+  return moment(value).format('YYYY-MM-DD');
 }
 
 export function getDifferenceInHours(d1: Date, d2: Date): number {

@@ -5,8 +5,8 @@ import {getDefaultPeriod, getDifferenceInHours} from '../../bpm.utils';
 
 @Component({
   selector: 'app-bpm-dashboard',
-  templateUrl: './app-bpm-dashboard.component.html',
-  styleUrls: ['./app-bpm-dashboard.component.css']
+  templateUrl: './bpm-dashboard.component.html',
+  styleUrls: ['./bpm-dashboard.component.css']
 })
 export class BpmDashboardComponent {
 
@@ -27,16 +27,23 @@ export class BpmDashboardComponent {
   private insertGapRecords(records: WithingsHeart[]): WithingsHeart[] {
     const result: WithingsHeart[] = [];
 
-    for (let i = 0; i < records.length - 1; i++) {
+    for (let i = 0; i < records.length; i++) {
       const cur = records[i];
-      const next = records[i + 1];
-      this.createGapRecord(cur, next).forEach((r) => result.push(r));
+      const next = i !== records.length - 1 ? records[i + 1] : null;
+      const rec = this.createGapRecord(cur, next);
+      rec.forEach((r) => result.push(r));
     }
+
+    console.log('Records length: ' + records.length);
+    console.log('Result length: ' + result.length);
 
     return result;
   }
 
   private createGapRecord(cur: WithingsHeart, next: WithingsHeart): WithingsHeart[] {
+    if (!next) {
+      return [cur];
+    }
     const d1 = new Date(cur.timestamp * 1000);
     const d2 = new Date(next.timestamp * 1000);
     const hours = getDifferenceInHours(d1, d2);

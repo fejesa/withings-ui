@@ -1,0 +1,13 @@
+.result-label {
+  display:inline-block;
+  width:45px;
+  height:25px;
+  font-size:medium
+}
+
+.time-label {
+  display:inline-block;
+  width:130px;
+  height:25px;
+  font-size:medium
+}

@@ -1,6 +1,6 @@
-.result-label {
+.stat-result-label {
   display:inline-block;
-  width:150px;
+  width:120px;
   height:25px;
   font-size:medium
 }

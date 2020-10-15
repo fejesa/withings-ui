@@ -11,8 +11,8 @@ import {
 
 @Component({
     selector: 'app-bpm-stats',
-    templateUrl: './app-bpm-stats.component.html',
-    styleUrls: ['../../containers/bpm-dashboard/app-bpm-dashboard.component.css']
+    templateUrl: './bpm-stats.component.html',
+    styleUrls: ['./bpm-stats.component.css']
   }
 )
 export class BpmStatsComponent {
@@ -70,22 +70,22 @@ export class BpmStatsComponent {
 
   getSystolicClass(value: number): string {
     if (isOptimalSystolic(value) || isNormalSystolic(value)) {
-      return 'col badge badge-pill badge-success result-label';
+      return 'col badge badge-pill badge-success stat-result-label';
     }
     if (isHighNormalSystolic(value)) {
-      return 'col badge badge-pill badge-warning result-label';
+      return 'col badge badge-pill badge-warning stat-result-label';
     }
-    return 'col badge badge-pill badge-danger result-label';
+    return 'col badge badge-pill badge-danger stat-result-label';
   }
 
   getDiastolicClass(value: number): string {
     if (isOptimalDiastolic(value) || isNormalDiastolic(value)) {
-      return 'col badge badge-pill badge-success result-label';
+      return 'col badge badge-pill badge-success stat-result-label';
     }
     if (isHighNormalDiastolic(value)) {
-      return 'col badge badge-pill badge-warning result-label';
+      return 'col badge badge-pill badge-warning stat-result-label';
     }
-    return 'col badge badge-pill badge-danger result-label';
+    return 'col badge badge-pill badge-danger stat-result-label';
   }
 
   isEmpty(): boolean {

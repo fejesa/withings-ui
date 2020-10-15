@@ -13,7 +13,8 @@ import {
 
 @Component({
   selector: 'app-bpm-table',
-  templateUrl: './app-bpm-table.component.html'
+  templateUrl: './app-bpm-table.component.html',
+  styleUrls: ['../../containers/bpm-dashboard/app-bpm-dashboard.component.css']
 })
 export class BpmTableComponent {
 
@@ -22,13 +23,13 @@ export class BpmTableComponent {
 
   getSystolicCellClass(value: number): string {
     if (isOptimalSystolic(value) || isNormalSystolic(value)) {
-      return 'text-center bg-success';
+      return 'badge badge-pill badge-success result-label';
     }
     if (isHighNormalSystolic(value)) {
-      return 'text-center bg-warning';
+      return 'badge badge-pill badge-warning result-label';
     }
     if (isGradeHypertensionSystolic(value)) {
-      return 'text-center bg-danger';
+      return 'badge badge-pill badge-danger result-label';
     }
 
     return 'text-center';
@@ -36,13 +37,13 @@ export class BpmTableComponent {
 
   getDiastolicCellClass(value: number): string {
     if (isOptimalDiastolic(value) || isNormalDiastolic(value)) {
-      return 'text-center bg-success';
+      return 'badge badge-pill badge-success result-label';
     }
     if (isHighNormalDiastolic(value)) {
-      return 'text-center bg-warning';
+      return 'badge badge-pill badge-warning result-label';
     }
     if (isGradeHypertensionDiastolic(value)) {
-      return 'text-center bg-danger';
+      return 'badge badge-pill badge-danger result-label';
     }
     return 'text-center';
   }

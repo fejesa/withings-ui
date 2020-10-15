@@ -3,16 +3,28 @@
     <thead>
     <tr class="text-center">
       <th>Time</th>
-      <th>Systole</th>
-      <th>Diastole</th>
+      <th>Sys</th>
+      <th>Dia</th>
+      <th>BPM</th>
+      <th>ECG</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let heart of records">
-      <td class="text-center" *ngIf="!isValidDate(heart.timestamp)" >No data in {{ heart.nextRecInDays }} day(s)</td>
+      <td class="text-center" *ngIf="!isValidDate(heart.timestamp)" >NA in {{ heart.nextRecInDays }} day(s)</td>
       <td class="text-center" *ngIf="isValidDate(heart.timestamp)" >{{ heart.timestamp * 1000 | date:'yyyy-MM-dd hh:mm'}}</td>
-      <td [class]="getSystolicCellClass(heart.systole)">{{ heart.systole }}</td>
-      <td [class]="getDiastolicCellClass(heart.diastole)">{{ heart.diastole }}</td>
+      <td class="text-center">
+        <span *ngIf="heart.systole > 0" [class]="getSystolicCellClass(heart.systole)">{{ heart.systole }}</span>
+      </td>
+      <td class="text-center">
+        <span *ngIf="heart.diastole > 0" [class]="getDiastolicCellClass(heart.diastole)">{{ heart.diastole }}</span>
+      </td>
+      <td class="text-center">
+        <span *ngIf="heart.heartRate > 0">{{heart.heartRate}}</span>
+      </td>
+      <td class="text-center">
+        <span *ngIf="heart.signalId > 0">ECG</span>
+      </td>
     </tr>
     </tbody>
   </table>

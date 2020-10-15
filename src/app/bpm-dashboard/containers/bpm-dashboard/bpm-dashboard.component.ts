@@ -6,7 +6,7 @@ import {getDefaultPeriod, getDifferenceInHours} from '../../bpm.utils';
 @Component({
   selector: 'app-bpm-dashboard',
   templateUrl: './app-bpm-dashboard.component.html',
-  styleUrls: ['./app-bpm-dashboard.css']
+  styleUrls: ['./app-bpm-dashboard.component.css']
 })
 export class BpmDashboardComponent {
 

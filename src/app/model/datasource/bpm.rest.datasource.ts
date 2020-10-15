@@ -18,6 +18,7 @@ export class BpmRestDatasource {
     const start = getDateAsString(period[0]);
     const end = getDateAsString(period[1]);
 
+    // TODO: set headers
     let myHeaders = new HttpHeaders();
     myHeaders = myHeaders.set('Access-Control-Allow-Origin', '*');
     myHeaders = myHeaders.set('Content-Type', 'application/json');

@@ -34,9 +34,6 @@ export class BpmDashboardComponent {
       rec.forEach((r) => result.push(r));
     }
 
-    console.log('Records length: ' + records.length);
-    console.log('Result length: ' + result.length);
-
     return result;
   }
 

@@ -20,36 +20,52 @@ export class BpmStatsComponent {
   @Input()
   records: WithingsHeart[];
 
+  private static minimum(a: number, b: number): number {
+    if (b <= 0) {
+      return a;
+    } else {
+      return Math.min(a, b);
+    }
+  }
+
+  private static maximum(a: number, b: number): number {
+    if (b <= 0) {
+      return a;
+    } else {
+      return Math.max(a, b);
+    }
+  }
+
   getMinSystole(): number {
-    if (this.noRecords()) {
+    if (this.isEmpty()) {
       return;
     }
     return this.records
-      .reduce((min, item) => this.min(min, item.systole), this.records[0].systole);
+      .reduce((min, item) => BpmStatsComponent.minimum(min, item.systole), this.records[0].systole);
   }
 
   getMaxSystole(): number {
-    if (this.noRecords()) {
+    if (this.isEmpty()) {
       return;
     }
     return this.records
-      .reduce((min, item) => this.max(min, item.systole), this.records[0].systole);
+      .reduce((min, item) => BpmStatsComponent.maximum(min, item.systole), this.records[0].systole);
   }
 
   getMinDiastole(): number {
-    if (this.noRecords()) {
+    if (this.isEmpty()) {
       return;
     }
     return this.records
-      .reduce((min, item) => this.min(min, item.diastole), this.records[0].diastole);
+      .reduce((min, item) => BpmStatsComponent.minimum(min, item.diastole), this.records[0].diastole);
   }
 
   getMaxDiastole(): number {
-    if (this.noRecords()) {
+    if (this.isEmpty()) {
       return;
     }
     return this.records
-      .reduce((min, item) => this.max(min, item.diastole), this.records[0].diastole);
+      .reduce((min, item) => BpmStatsComponent.maximum(min, item.diastole), this.records[0].diastole);
   }
 
   getSystolicClass(value: number): string {
@@ -72,23 +88,7 @@ export class BpmStatsComponent {
     return 'col badge badge-pill badge-danger result-label';
   }
 
-  private noRecords(): boolean {
+  isEmpty(): boolean {
     return !this.records || this.records.length === 0;
-  }
-
-  private min(a: number, b: number): number {
-    if (b <= 0) {
-      return a;
-    } else {
-      return Math.min(a, b);
-    }
-  }
-
-  private max(a: number, b: number): number {
-    if (b <= 0) {
-      return a;
-    } else {
-      return Math.max(a, b);
-    }
   }
 }

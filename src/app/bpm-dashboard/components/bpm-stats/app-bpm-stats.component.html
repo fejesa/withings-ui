@@ -1,4 +1,4 @@
-<div class="container-fluid" style="padding-bottom: 10px">
+<div *ngIf="!isEmpty()" class="container-fluid" style="padding-bottom: 10px">
   <div class="row">
     <div [class]="getSystolicClass(getMinSystole())">
       SYS min: {{getMinSystole()}}

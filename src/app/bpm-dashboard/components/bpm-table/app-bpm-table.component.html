@@ -1,7 +1,7 @@
 <div>
-  <table class="table table-sm table-bordered table-striped">
+  <table *ngIf="!isEmpty()" class="table table-sm">
     <thead>
-    <tr class="text-center">
+    <tr class="text-center thead-light">
       <th>Time</th>
       <th>Sys</th>
       <th>Dia</th>
@@ -12,7 +12,9 @@
     <tbody>
     <tr *ngFor="let heart of records">
       <td class="text-center" *ngIf="!isValidDate(heart.timestamp)" >NA in {{ heart.nextRecInDays }} day(s)</td>
-      <td class="text-center" *ngIf="isValidDate(heart.timestamp)" >{{ heart.timestamp * 1000 | date:'yyyy-MM-dd hh:mm'}}</td>
+      <td class="text-center" *ngIf="isValidDate(heart.timestamp)">
+        <span [class]="getMeasureTimeCellClass(heart.timestamp)" >{{ heart.timestamp * 1000 | date:'yyyy-MM-dd HH:mm'}}</span>
+      </td>
       <td class="text-center">
         <span *ngIf="heart.systole > 0" [class]="getSystolicCellClass(heart.systole)">{{ heart.systole }}</span>
       </td>
@@ -28,4 +30,7 @@
     </tr>
     </tbody>
   </table>
+  <div *ngIf="isEmpty()">
+    <h4>No data in the given period</h4>
+  </div>
 </div>

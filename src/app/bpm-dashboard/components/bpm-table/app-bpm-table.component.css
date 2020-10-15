@@ -1,0 +1,19 @@
+.morning {
+  background-color: #efba25;
+  color: white;
+}
+
+.midday {
+  background-color: #f48428;
+  color: white;
+}
+
+.evening {
+  background-color: #676c9e;
+  color: white;
+}
+
+.bedtime {
+  background-color: #203863;
+  color: white;
+}

@@ -75,3 +75,15 @@ export function getDifferenceInHours(d1: Date, d2: Date): number {
 
   return a.diff(b, 'hours');
 }
+
+export function isMorningTime(d: Date): boolean {
+  return d.getHours() <= 8 && d.getHours() > 6;
+}
+
+export function isMiddayTime(d: Date): boolean {
+  return d.getHours() > 8 && d.getHours() <= 18;
+}
+
+export function isEveningTime(d: Date): boolean {
+  return d.getHours() > 18 && d.getHours() <= 22;
+}

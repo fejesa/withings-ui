@@ -1,10 +1,11 @@
 import {Component, Input} from '@angular/core';
 import {WithingsHeart} from '../../../model/data/bpm.model';
 import {
+  isEveningTime,
   isGradeHypertensionDiastolic,
   isGradeHypertensionSystolic,
   isHighNormalDiastolic,
-  isHighNormalSystolic,
+  isHighNormalSystolic, isMiddayTime, isMorningTime,
   isNormalDiastolic,
   isNormalSystolic,
   isOptimalDiastolic,
@@ -14,7 +15,10 @@ import {
 @Component({
   selector: 'app-bpm-table',
   templateUrl: './app-bpm-table.component.html',
-  styleUrls: ['../../containers/bpm-dashboard/app-bpm-dashboard.component.css']
+  styleUrls: [
+    '../../containers/bpm-dashboard/app-bpm-dashboard.component.css',
+    './app-bpm-table.component.css'
+  ]
 })
 export class BpmTableComponent {
 
@@ -50,5 +54,23 @@ export class BpmTableComponent {
 
   isValidDate(value: number): boolean {
     return value > 0;
+  }
+
+  getMeasureTimeCellClass(value: number): string {
+    const d = new Date(value * 1000);
+    if (isMorningTime(d)) {
+      return 'badge badge-pill badge-success result-label morning';
+    }
+    if (isMiddayTime(d)) {
+      return 'badge badge-pill badge-success result-label midday';
+    }
+    if (isEveningTime(d)) {
+      return 'badge badge-pill badge-success result-label evening';
+    }
+    return 'badge badge-pill badge-success result-label bedtime';
+  }
+
+  isEmpty(): boolean {
+    return !this.records || this.records.length === 0;
   }
 }

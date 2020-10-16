@@ -6,4 +6,14 @@
   </app-bpm-stats>
   <app-bpm-table [records]="getRecords()">
   </app-bpm-table>
+  <div>
+    <pager
+      [totalItems]="maxItemNumber()"
+      [itemsPerPage]="getMaxRowNumber()"
+      [(ngModel)]="pageNumber"
+      (pageChanged)="pageChanged($event)"
+      pageBtnClass="btn"
+      align="false">
+    </pager>
+  </div>
 </div>

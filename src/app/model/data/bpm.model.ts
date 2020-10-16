@@ -1,5 +1,4 @@
 export class WithingsHeart {
-
   constructor(public diastole: number,
               public systole: number,
               public heartRate: number,
@@ -8,6 +7,13 @@ export class WithingsHeart {
               public signalId: number,
               public nextRecInDays?: number
               ) {}
+}
+
+export class WithingsHeartResponse {
+  constructor(public hearts: WithingsHeart[],
+              public offset: number,
+              public pageNumber: number,
+              public pageSize: number) {}
 }
 
 export class WithingsSignal {

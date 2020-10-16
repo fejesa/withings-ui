@@ -73,4 +73,6 @@ export class BpmTableComponent {
   isEmpty(): boolean {
     return !this.records || this.records.length === 0;
   }
+
+
 }

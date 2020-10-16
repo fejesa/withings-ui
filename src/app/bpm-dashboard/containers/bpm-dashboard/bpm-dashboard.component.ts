@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {BpmRepository} from '../../../model/repository/bpm.repository';
-import {WithingsHeart} from '../../../model/data/bpm.model';
+import {WithingsHeart, WithingsHeartResponse} from '../../../model/data/bpm.model';
 import {getDefaultPeriod, getDifferenceInHours} from '../../bpm.utils';
 
 @Component({
@@ -10,14 +10,30 @@ import {getDefaultPeriod, getDifferenceInHours} from '../../bpm.utils';
 })
 export class BpmDashboardComponent {
 
+  private MAX_ROW_PER_PAGE = 100;
+
   private period: Date[];
+  private maxItems = 1000;
+  private offset = 0;
+
+  pageNumber = 1;
 
   constructor(private model: BpmRepository) {
     this.period = getDefaultPeriod();
   }
 
+  getMaxRowNumber(): number {
+    return this.MAX_ROW_PER_PAGE;
+  }
+
+  maxItemNumber(): number {
+    return this.maxItems;
+  }
+
   getRecords(): WithingsHeart[] {
-    return this.insertGapRecords(this.model.getRecords(this.period));
+    const result: WithingsHeartResponse = this.model.getRecords(this.period, this.offset, this.pageNumber);
+    this.offset = result.offset;
+    return this.insertGapRecords(result.hearts);
   }
 
   handlePeriod(event: Date[]): void {
@@ -26,6 +42,9 @@ export class BpmDashboardComponent {
 
   private insertGapRecords(records: WithingsHeart[]): WithingsHeart[] {
     const result: WithingsHeart[] = [];
+    if (!records) {
+      return  result;
+    }
 
     for (let i = 0; i < records.length; i++) {
       const cur = records[i];
@@ -48,5 +67,9 @@ export class BpmDashboardComponent {
       return [cur, new WithingsHeart(0, 0, 0, '', -1, -1, Math.floor(hours / 24))];
     }
     return [cur];
+  }
+
+  pageChanged(event: any): void {
+    this.getRecords();
   }
 }

@@ -6,6 +6,6 @@ import { BpmRestDatasource, REST_URL } from './datasource/bpm.rest.datasource';
 @NgModule({
   imports: [HttpClientModule, HttpClientJsonpModule],
   providers: [BpmRepository, BpmRestDatasource,
-    { provide: REST_URL, useValue: `http://0539ad4a7120.ngrok.io/heart` }]
+    { provide: REST_URL, useValue: `http://localhost:3500/hearts/1` }]
 })
 export class BpmModelModule { }

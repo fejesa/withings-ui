@@ -26,14 +26,15 @@ export class BpmTableComponent {
   records: WithingsHeart[];
 
   getSystolicCellClass(value: number): string {
+
     if (isOptimalSystolic(value) || isNormalSystolic(value)) {
-      return 'badge badge-pill badge-success result-label';
+      return this.getResultCellClass('success');
     }
     if (isHighNormalSystolic(value)) {
-      return 'badge badge-pill badge-warning result-label';
+      return this.getResultCellClass('warning');
     }
     if (isGradeHypertensionSystolic(value)) {
-      return 'badge badge-pill badge-danger result-label';
+      return this.getResultCellClass('danger');
     }
 
     return 'text-center';
@@ -41,15 +42,19 @@ export class BpmTableComponent {
 
   getDiastolicCellClass(value: number): string {
     if (isOptimalDiastolic(value) || isNormalDiastolic(value)) {
-      return 'badge badge-pill badge-success result-label';
+      return this.getResultCellClass('success');
     }
     if (isHighNormalDiastolic(value)) {
-      return 'badge badge-pill badge-warning result-label';
+      return this.getResultCellClass('warning');
     }
     if (isGradeHypertensionDiastolic(value)) {
-      return 'badge badge-pill badge-danger result-label';
+      return this.getResultCellClass('danger');
     }
     return 'text-center';
+  }
+
+  getResultCellClass(severity: string): string {
+    return `badge badge-pill badge-${severity} result-label`;
   }
 
   isValidDate(value: number): boolean {
@@ -58,21 +63,21 @@ export class BpmTableComponent {
 
   getMeasureTimeCellClass(value: number): string {
     const d = new Date(value * 1000);
+    let daytime: string;
     if (isMorningTime(d)) {
-      return 'badge badge-pill badge-success time-label morning';
+      daytime = 'morning';
+    } else if (isMiddayTime(d)) {
+      daytime = 'midday';
+    } else if (isEveningTime(d)) {
+      daytime = 'evening';
+    } else {
+      daytime = 'bedtime';
     }
-    if (isMiddayTime(d)) {
-      return 'badge badge-pill badge-success time-label midday';
-    }
-    if (isEveningTime(d)) {
-      return 'badge badge-pill badge-success time-label evening';
-    }
-    return 'badge badge-pill badge-success time-label bedtime';
+
+    return `badge badge-pill time-label ${daytime}`;
   }
 
   isEmpty(): boolean {
     return !this.records || this.records.length === 0;
   }
-
-
 }

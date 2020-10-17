@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BpmRestDatasource} from '../datasource/bpm.rest.datasource';
-import {WithingsHeart, WithingsHeartResponse} from '../data/bpm.model';
+import {WithingsHeartResponse} from '../data/bpm.model';
 
 @Injectable()
 export class BpmRepository {

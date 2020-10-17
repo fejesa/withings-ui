@@ -28,6 +28,6 @@ export class BpmRestDatasource {
         headers: myHeaders
       }
       ).pipe(catchError((error: Response) =>
-      throwError(`Network Error: ${error.statusText} (${error.status})`)));
+        throwError(`Network Error: ${error.statusText} (${error.status})`)));
   }
 }

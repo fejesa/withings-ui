@@ -70,22 +70,27 @@ export class BpmStatsComponent {
 
   getSystolicClass(value: number): string {
     if (isOptimalSystolic(value) || isNormalSystolic(value)) {
-      return 'col badge badge-pill badge-success stat-result-label';
+      return this.getStatClass('success');
     }
     if (isHighNormalSystolic(value)) {
-      return 'col badge badge-pill badge-warning stat-result-label';
+      return this.getStatClass('warning');
     }
-    return 'col badge badge-pill badge-danger stat-result-label';
+    return this.getStatClass('danger');
   }
 
   getDiastolicClass(value: number): string {
     if (isOptimalDiastolic(value) || isNormalDiastolic(value)) {
-      return 'col badge badge-pill badge-success stat-result-label';
+      return this.getStatClass('success');
     }
     if (isHighNormalDiastolic(value)) {
-      return 'col badge badge-pill badge-warning stat-result-label';
+      return this.getStatClass('warning');
     }
-    return 'col badge badge-pill badge-danger stat-result-label';
+
+    return this.getStatClass('danger');
+  }
+
+  private getStatClass(severity: string): string {
+    return `col badge badge-pill badge-${severity} stat-result-label`;
   }
 
   isEmpty(): boolean {

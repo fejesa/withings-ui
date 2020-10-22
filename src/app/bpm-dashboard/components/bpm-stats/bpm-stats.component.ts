@@ -36,6 +36,10 @@ export class BpmStatsComponent {
     }
   }
 
+  private static getStatClass(severity: string): string {
+    return `col badge badge-pill badge-${severity} stat-result-label`;
+  }
+
   getMinSystole(): number {
     if (this.isEmpty()) {
       return;
@@ -70,27 +74,23 @@ export class BpmStatsComponent {
 
   getSystolicClass(value: number): string {
     if (isOptimalSystolic(value) || isNormalSystolic(value)) {
-      return this.getStatClass('success');
+      return BpmStatsComponent.getStatClass('success');
     }
     if (isHighNormalSystolic(value)) {
-      return this.getStatClass('warning');
+      return BpmStatsComponent.getStatClass('warning');
     }
-    return this.getStatClass('danger');
+    return BpmStatsComponent.getStatClass('danger');
   }
 
   getDiastolicClass(value: number): string {
     if (isOptimalDiastolic(value) || isNormalDiastolic(value)) {
-      return this.getStatClass('success');
+      return BpmStatsComponent.getStatClass('success');
     }
     if (isHighNormalDiastolic(value)) {
-      return this.getStatClass('warning');
+      return BpmStatsComponent.getStatClass('warning');
     }
 
-    return this.getStatClass('danger');
-  }
-
-  private getStatClass(severity: string): string {
-    return `col badge badge-pill badge-${severity} stat-result-label`;
+    return BpmStatsComponent.getStatClass('danger');
   }
 
   isEmpty(): boolean {

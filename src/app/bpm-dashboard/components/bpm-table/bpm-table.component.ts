@@ -5,7 +5,9 @@ import {
   isGradeHypertensionDiastolic,
   isGradeHypertensionSystolic,
   isHighNormalDiastolic,
-  isHighNormalSystolic, isMiddayTime, isMorningTime,
+  isHighNormalSystolic,
+  isMiddayTime,
+  isMorningTime,
   isNormalDiastolic,
   isNormalSystolic,
   isOptimalDiastolic,
@@ -62,13 +64,12 @@ export class BpmTableComponent {
   }
 
   getMeasureTimeCellClass(value: number): string {
-    const d = new Date(value * 1000);
     let daytime: string;
-    if (isMorningTime(d)) {
+    if (isMorningTime(value)) {
       daytime = 'morning';
-    } else if (isMiddayTime(d)) {
+    } else if (isMiddayTime(value)) {
       daytime = 'midday';
-    } else if (isEveningTime(d)) {
+    } else if (isEveningTime(value)) {
       daytime = 'evening';
     } else {
       daytime = 'bedtime';

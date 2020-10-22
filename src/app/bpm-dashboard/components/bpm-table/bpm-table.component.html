@@ -25,7 +25,7 @@
         <span *ngIf="heart.heartRate > 0">{{heart.heartRate}}</span>
       </td>
       <td class="text-center">
-        <span *ngIf="heart.signalId > 0">ECG</span>
+        <a *ngIf="heart.signalId > 0" routerLink="/ecg/{{heart.signalId}}/{{heart.timestamp}}">ECG</a>
       </td>
     </tr>
     </tbody>

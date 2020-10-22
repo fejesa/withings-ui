@@ -69,21 +69,32 @@ export function getDateAsString(value: Date): string {
   return moment(value).format('YYYY-MM-DD');
 }
 
-export function getDifferenceInHours(d1: Date, d2: Date): number {
-  const a = moment(d1);
-  const b = moment(d2);
+export function getDateTimeAsString(value: number): string {
+  return moment(toDate(value)).format('YY-MM-DD HH:mm');
+}
+
+function toDate(value: number): Date {
+  return new Date(value * 1000);
+}
+
+export function getDifferenceInHours(v1: number, v2: number): number {
+  const a = moment(toDate(v1));
+  const b = moment(toDate(v2));
 
   return a.diff(b, 'hours');
 }
 
-export function isMorningTime(d: Date): boolean {
+export function isMorningTime(value: number): boolean {
+  const d = toDate(value);
   return d.getHours() <= 8 && d.getHours() > 6;
 }
 
-export function isMiddayTime(d: Date): boolean {
+export function isMiddayTime(value: number): boolean {
+  const d = toDate(value);
   return d.getHours() > 8 && d.getHours() <= 18;
 }
 
-export function isEveningTime(d: Date): boolean {
+export function isEveningTime(value: number): boolean {
+  const d = toDate(value);
   return d.getHours() > 18 && d.getHours() <= 22;
 }

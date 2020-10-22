@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {BpmEcgComponent} from './components/bpm-ecg/bpm-ecg.component';
 import {BpmPeriodComponent} from './components/bpm-period/bpm-period.component';
@@ -24,10 +25,11 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
-    FormsModule
+    FormsModule, RouterModule
   ],
   exports: [
-    BpmDashboardComponent
+    BpmDashboardComponent,
+    BpmEcgComponent
   ]
 })
 export class BpmDashboardModule {

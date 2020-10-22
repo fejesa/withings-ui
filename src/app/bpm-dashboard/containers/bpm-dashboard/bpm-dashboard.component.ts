@@ -18,7 +18,7 @@ export class BpmDashboardComponent {
 
   pageNumber = 1;
 
-  constructor(private model: BpmRepository) {
+  constructor(private repository: BpmRepository) {
     this.period = getDefaultPeriod();
   }
 
@@ -31,7 +31,7 @@ export class BpmDashboardComponent {
   }
 
   getRecords(): WithingsHeart[] {
-    const result: WithingsHeartResponse = this.model.getRecords(this.period, this.offset, this.pageNumber);
+    const result: WithingsHeartResponse = this.repository.getHeartRecords(this.period, this.offset, this.pageNumber);
     this.offset = result.offset;
     return this.insertGapRecords(result.hearts);
   }
@@ -60,9 +60,7 @@ export class BpmDashboardComponent {
     if (!next) {
       return [cur];
     }
-    const d1 = new Date(cur.timestamp * 1000);
-    const d2 = new Date(next.timestamp * 1000);
-    const hours = getDifferenceInHours(d1, d2);
+    const hours = getDifferenceInHours(cur.timestamp, next.timestamp);
     if (hours > 24) {
       return [cur, new WithingsHeart(0, 0, 0, '', -1, -1, Math.floor(hours / 24))];
     }

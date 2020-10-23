@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {BpmRepository} from '../../../model/repository/bpm.repository';
-import {WithingsHeart, WithingsHeartResponse} from '../../../model/data/bpm.model';
+import {WithingsHeart} from '../../../model/data/bpm.model';
 import {getDefaultPeriod, getDifferenceInHours} from '../../bpm.utils';
+import {BpmRestDatasource} from '../../../model/datasource/bpm.rest.datasource';
 
 @Component({
   selector: 'app-bpm-dashboard',
@@ -13,12 +13,18 @@ export class BpmDashboardComponent {
   private MAX_ROW_PER_PAGE = 100;
 
   private period: Date[];
-  private maxItems = 1000;
   private offset = 0;
+  private hearts: WithingsHeart[];
 
   pageNumber = 1;
 
-  constructor(private repository: BpmRepository) {
+  private state = {
+    period: this.period,
+    offset: this.offset,
+    pageNumber: this.pageNumber
+  };
+
+  constructor(private dataSource: BpmRestDatasource) {
     this.period = getDefaultPeriod();
   }
 
@@ -27,17 +33,30 @@ export class BpmDashboardComponent {
   }
 
   maxItemNumber(): number {
-    return this.maxItems;
+    return 1000;
   }
 
   getRecords(): WithingsHeart[] {
-    const result: WithingsHeartResponse = this.repository.getHeartRecords(this.period, this.offset, this.pageNumber);
-    this.offset = result.offset;
-    return this.insertGapRecords(result.hearts);
+    if (this.isChanged()) {
+
+      this.updateState();
+
+      this.dataSource
+        .getHeartRecords(this.period, this.offset, this.pageNumber)
+        .subscribe(data => {
+          this.offset = data.offset;
+          this.hearts = this.insertGapRecords(data.hearts);
+      });
+    }
+    return this.hearts;
   }
 
   handlePeriod(event: Date[]): void {
     this.period = event;
+  }
+
+  pageChanged(event: any): void {
+    this.getRecords();
   }
 
   private insertGapRecords(records: WithingsHeart[]): WithingsHeart[] {
@@ -67,7 +86,14 @@ export class BpmDashboardComponent {
     return [cur];
   }
 
-  pageChanged(event: any): void {
-    this.getRecords();
+  private isChanged(): boolean {
+    return (!this.state.period || this.state.period !== this.period)
+      || (this.state.offset !== this.offset && this.state.pageNumber !== this.pageNumber);
+  }
+
+  private updateState(): void {
+    this.state.pageNumber = this.pageNumber;
+    this.state.period = this.period;
+    this.state.offset = this.offset;
   }
 }

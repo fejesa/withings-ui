@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, DoCheck} from '@angular/core';
 import {WithingsHeart} from '../../../model/data/bpm.model';
 import {getDefaultPeriod, getDifferenceInHours} from '../../bpm.utils';
 import {BpmRestDatasource} from '../../../model/datasource/bpm.rest.datasource';
@@ -8,7 +8,7 @@ import {BpmRestDatasource} from '../../../model/datasource/bpm.rest.datasource';
   templateUrl: './bpm-dashboard.component.html',
   styleUrls: ['./bpm-dashboard.component.css']
 })
-export class BpmDashboardComponent {
+export class BpmDashboardComponent implements DoCheck {
 
   private MAX_ROW_PER_PAGE = 100;
 
@@ -36,18 +36,19 @@ export class BpmDashboardComponent {
     return 1000;
   }
 
-  getRecords(): WithingsHeart[] {
+  ngDoCheck(): void {
     if (this.isChanged()) {
-
       this.updateState();
-
       this.dataSource
         .getHeartRecords(this.period, this.offset, this.pageNumber)
         .subscribe(data => {
           this.offset = data.offset;
           this.hearts = this.insertGapRecords(data.hearts);
-      });
+        });
     }
+  }
+
+  getRecords(): WithingsHeart[] {
     return this.hearts;
   }
 

@@ -21,19 +21,11 @@ export class BpmStatsComponent {
   records: WithingsHeart[];
 
   private static minimum(a: number, b: number): number {
-    if (b <= 0) {
-      return a;
-    } else {
-      return Math.min(a, b);
-    }
+    return b <= 0 ? a : Math.min(a, b);
   }
 
   private static maximum(a: number, b: number): number {
-    if (b <= 0) {
-      return a;
-    } else {
-      return Math.max(a, b);
-    }
+    return b <= 0 ? a : Math.max(a, b);
   }
 
   private static getStatClass(severity: string): string {

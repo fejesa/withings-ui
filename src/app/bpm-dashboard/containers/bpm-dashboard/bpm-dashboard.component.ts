@@ -19,7 +19,7 @@ export class BpmDashboardComponent implements DoCheck {
   pageNumber = 1;
 
   private state = {
-    period: this.period,
+    period: getDefaultPeriod(),
     offset: this.offset,
     pageNumber: this.pageNumber
   };

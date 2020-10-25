@@ -6,6 +6,10 @@ You can access your data collected by their devices, and you can view them by us
 This BPM web application shows an alternative way to view your measurements.
 ![Dashboard](dashboard.png)
 
+The classification of blood pressure levels recorded in a medical setting,
+and the blood pressure color code can be found [here](https://support.withings.com/hc/en-us/articles/201572026-BPM-Blood-pressure-color-code).
+The measurement times are labeled with different colors depending on the time of the day.
+
 In case of your Blood Pressure Monitor device can create electrocardiogram, you can get a complete picture
 of your cardiovascular health.
 ![ECG](ecg.png)

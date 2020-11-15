@@ -52,6 +52,10 @@ export class BpmDashboardComponent implements DoCheck {
     return this.hearts;
   }
 
+  getPeriod(): Date[] {
+    return this.period;
+  }
+
   handlePeriod(event: Date[]): void {
     this.period = event;
   }

@@ -73,7 +73,7 @@ export function getDateTimeAsString(value: number): string {
   return moment(toDate(value)).format('YY-MM-DD HH:mm');
 }
 
-function toDate(value: number): Date {
+export function toDate(value: number): Date {
   return new Date(value * 1000);
 }
 
@@ -82,6 +82,13 @@ export function getDifferenceInHours(v1: number, v2: number): number {
   const b = moment(toDate(v2));
 
   return a.diff(b, 'hours');
+}
+
+export function  getDifferenceInMins(v1: number, v2: number): number {
+  const a = moment(toDate(v1));
+  const b = moment(toDate(v2));
+
+  return a.diff(b, 'minutes');
 }
 
 export function isMorningTime(value: number): boolean {

@@ -22,3 +22,10 @@ export class WithingsSignal {
               public deviceName: string,
               public wearPosition: string) {}
 }
+
+export class WithingsBloodPressure {
+  constructor(public diastole: number,
+              public systole: number,
+              public heartRate: number,
+              public timestamp: number) {}
+}

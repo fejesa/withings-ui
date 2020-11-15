@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {FormsModule} from '@angular/forms';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
+import {BpmChartComponent} from './components/bpm-chart/bpm-chart.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
     BpmPeriodComponent,
     BpmStatsComponent,
     BpmTableComponent,
+    BpmChartComponent,
     BpmDashboardComponent
   ],
   imports: [
@@ -29,7 +31,8 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
   ],
   exports: [
     BpmDashboardComponent,
-    BpmEcgComponent
+    BpmEcgComponent,
+    BpmChartComponent
   ]
 })
 export class BpmDashboardModule {

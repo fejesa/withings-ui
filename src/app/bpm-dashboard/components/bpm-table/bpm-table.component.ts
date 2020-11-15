@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {WithingsHeart} from '../../../model/data/bpm.model';
 import {
+  getDateAsString,
   isEveningTime,
   isGradeHypertensionDiastolic,
   isGradeHypertensionSystolic,
@@ -13,6 +14,7 @@ import {
   isOptimalDiastolic,
   isOptimalSystolic
 } from '../../bpm.utils';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-bpm-table',
@@ -26,6 +28,20 @@ export class BpmTableComponent {
 
   @Input()
   records: WithingsHeart[];
+
+  @Input()
+  period: Date[];
+
+  constructor(private router: Router) {}
+
+  showDiagram(): void {
+    this.router.navigate(['chart'], {
+      queryParams: {
+        from: getDateAsString(this.period[0]),
+        to: getDateAsString(this.period[1])
+      }
+    });
+  }
 
   getSystolicCellClass(value: number): string {
 

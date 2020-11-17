@@ -22,7 +22,7 @@ import {
   ChartXY,
   Color,
   IndividualPointFill,
-  Point
+  Point, SolidLine, SolidFill, ColorHEX
 } from '@arction/lcjs';
 
 @Component({
@@ -50,12 +50,41 @@ export class BpmChartComponent implements OnDestroy, OnInit  {
       theme: Themes.light
     });
 
+    const yAxis = this.chart.getDefaultAxisY();
+    const sysBand = yAxis.addBand(false);
+    sysBand
+      .setValueStart(90)
+      .setValueEnd(129)
+      .setStrokeStyle(
+        new SolidLine({
+          thickness: 1,
+          fillStyle: new SolidFill({ color: ColorHEX('#5b19') })
+        })
+      )
+      .setFillStyle(
+        new SolidFill({ color: ColorHEX('#5b19') })
+      );
+
+    const diaBand = yAxis.addBand(false);
+    diaBand
+      .setValueStart(60)
+      .setValueEnd(84)
+      .setStrokeStyle(
+        new SolidLine({
+          thickness: 1,
+          fillStyle: new SolidFill({ color: ColorHEX('#5b19') })
+        })
+      )
+      .setFillStyle(
+        new SolidFill({ color: ColorHEX('#5b19') })
+      );
+
     const individualStyle = new IndividualPointFill();
     individualStyle.setFallbackColor(this.normalColor);
 
     const parser = (builder, series, Xvalue, Yvalue) => {
       return builder
-        .addRow(series.getName() + '(mm Hg): ' + Math.floor(Yvalue));
+        .addRow(series.getName() + ' (mm Hg): ' + Math.floor(Yvalue));
     };
 
     const systoleSeries = this.chart.addPointSeries({ pointShape: PointShape.Circle })
@@ -63,7 +92,7 @@ export class BpmChartComponent implements OnDestroy, OnInit  {
       .setPointFillStyle(individualStyle)
       .setPointSize(8).setResultTableFormatter(parser);
 
-    const diastoleSeries = this.chart.addPointSeries({ pointShape: PointShape.Circle })
+    const diastoleSeries = this.chart.addPointSeries({ pointShape: PointShape.Triangle })
       .setName('Dia')
       .setPointFillStyle(individualStyle)
       .setPointSize(8).setResultTableFormatter(parser);
@@ -79,7 +108,7 @@ export class BpmChartComponent implements OnDestroy, OnInit  {
 
         const dateOrigin = this.getDateOrigin(data);
         const systolePoints = this.getSystolePoints(data);
-        const diastolePoints = this.getDyastolePoints(data);
+        const diastolePoints = this.getDiastolePoints(data);
 
         this.chart.getDefaultAxisX()
           .setTickStrategy(AxisTickStrategies.DateTime, (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin));
@@ -121,7 +150,7 @@ export class BpmChartComponent implements OnDestroy, OnInit  {
     });
   }
 
-  private getDyastolePoints(data: WithingsBloodPressure[]): Point[] {
+  private getDiastolePoints(data: WithingsBloodPressure[]): Point[] {
     const baseDate = toDate(data[0].timestamp);
     return data.filter(bp => bp.diastole > 0).map(bp => {
       return {x: this.diff(baseDate, bp.timestamp), y: bp.diastole};

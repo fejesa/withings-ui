@@ -7,7 +7,7 @@ import {
   isNormalSystolic,
   isOptimalDiastolic,
   isOptimalSystolic
-} from '../../bpm.utils';
+} from '../../../util/bpm.utils';
 
 @Component({
     selector: 'app-bpm-stats',

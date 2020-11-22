@@ -16,7 +16,7 @@ import {createSampledDataGenerator} from '@arction/xydata';
 import {WithingsSignal} from '../../../model/data/bpm.model';
 import {BpmRestDatasource} from '../../../model/datasource/bpm.rest.datasource';
 import {ActivatedRoute} from '@angular/router';
-import {getDateTimeAsString} from '../../bpm.utils';
+import {getDateTimeAsString} from '../../../util/date.util';
 
 @Component({
   selector: 'app-bpm-ecg',

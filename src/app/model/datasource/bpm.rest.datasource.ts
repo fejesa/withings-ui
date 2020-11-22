@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {WithingsBloodPressure, WithingsHeartResponse, WithingsSignal} from '../data/bpm.model';
-import {getDateAsString} from '../../bpm-dashboard/bpm.utils';
+import {getDateAsString} from '../../util/date.util';
 
 export const REST_URL = new InjectionToken('rest_url');
 

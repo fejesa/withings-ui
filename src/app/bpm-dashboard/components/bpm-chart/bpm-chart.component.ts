@@ -4,26 +4,31 @@ import {BpmRestDatasource} from '../../../model/datasource/bpm.rest.datasource';
 import {WithingsBloodPressure} from '../../../model/data/bpm.model';
 import * as moment from 'moment';
 import {
-  getDateAsString, getDateTimeAsString,
-  getDifferenceInMins, isGradeHypertensionDiastolic,
-  isGradeHypertensionSystolic, isHighNormalDiastolic,
-  isHighNormalSystolic, isNormalDiastolic,
-  isNormalSystolic, isOptimalDiastolic,
-  isOptimalSystolic,
-  toDate
-} from '../../bpm.utils';
+  isGradeHypertensionDiastolic,
+  isGradeHypertensionSystolic,
+  isHighNormalDiastolic,
+  isHighNormalSystolic,
+  isNormalDiastolic,
+  isNormalSystolic,
+  isOptimalDiastolic,
+  isOptimalSystolic
+} from '../../../util/bpm.utils';
 
 import {
-  lightningChart,
   AxisTickStrategies,
-  PointShape,
-  ColorRGBA,
-  Themes,
   ChartXY,
   Color,
+  ColorHEX,
+  ColorRGBA,
   IndividualPointFill,
-  Point, SolidLine, SolidFill, ColorHEX
+  lightningChart,
+  Point,
+  PointShape,
+  SolidFill,
+  SolidLine,
+  Themes
 } from '@arction/lcjs';
+import {getDateAsString, getDifferenceInMins, toDate} from '../../../util/date.util';
 
 @Component({
   selector: 'app-bmp-chart',

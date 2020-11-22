@@ -1,7 +1,7 @@
 import {Component, DoCheck} from '@angular/core';
 import {WithingsHeart} from '../../../model/data/bpm.model';
-import {getDefaultPeriod, getDifferenceInHours} from '../../bpm.utils';
 import {BpmRestDatasource} from '../../../model/datasource/bpm.rest.datasource';
+import {getDefaultPeriod, getDifferenceInHours} from '../../../util/date.util';
 
 @Component({
   selector: 'app-bpm-dashboard',

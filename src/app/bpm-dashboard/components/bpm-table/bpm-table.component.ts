@@ -1,20 +1,17 @@
 import {Component, Input} from '@angular/core';
 import {WithingsHeart} from '../../../model/data/bpm.model';
 import {
-  getDateAsString,
-  isEveningTime,
   isGradeHypertensionDiastolic,
   isGradeHypertensionSystolic,
   isHighNormalDiastolic,
   isHighNormalSystolic,
-  isMiddayTime,
-  isMorningTime,
   isNormalDiastolic,
   isNormalSystolic,
   isOptimalDiastolic,
   isOptimalSystolic
-} from '../../bpm.utils';
+} from '../../../util/bpm.utils';
 import {Router} from '@angular/router';
+import {getDateAsString, isEveningTime, isMiddayTime, isMorningTime} from '../../../util/date.util';
 
 @Component({
   selector: 'app-bpm-table',

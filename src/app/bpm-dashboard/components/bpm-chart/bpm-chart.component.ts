@@ -52,26 +52,24 @@ export class BpmChartComponent implements OnDestroy, OnInit  {
   ngOnInit(): void {
 
     this.chart = lightningChart().ChartXY({
-      theme: Themes.light
+      theme: Themes.dark
     });
 
     const yAxis = this.chart.getDefaultAxisY();
-    const sysBand = yAxis.addBand(false);
-    sysBand
+    const sysBand = yAxis.addBand(false)
       .setValueStart(90)
       .setValueEnd(129)
       .setStrokeStyle(
         new SolidLine({
           thickness: 1,
-          fillStyle: new SolidFill({ color: ColorHEX('#5b19') })
+          fillStyle: new SolidFill({ color: ColorHEX('#82FA58') })
         })
       )
       .setFillStyle(
-        new SolidFill({ color: ColorHEX('#5b19') })
+        new SolidFill({ color: ColorHEX('#82FA58') })
       );
 
-    const diaBand = yAxis.addBand(false);
-    diaBand
+    const diaBand = yAxis.addBand(false)
       .setValueStart(60)
       .setValueEnd(84)
       .setStrokeStyle(
@@ -150,15 +148,25 @@ export class BpmChartComponent implements OnDestroy, OnInit  {
 
   private getSystolePoints(data: WithingsBloodPressure[]): Point[] {
     const baseDate = toDate(data[0].timestamp);
-    return data.filter(bp => bp.systole > 0).map(bp => {
-      return {x: this.diff(baseDate, bp.timestamp), y: bp.systole};
+    return data
+      .filter(bp => bp.systole > 0)
+      .map(bp => {
+        return {
+          x: this.diff(baseDate, bp.timestamp),
+          y: bp.systole
+        };
     });
   }
 
   private getDiastolePoints(data: WithingsBloodPressure[]): Point[] {
     const baseDate = toDate(data[0].timestamp);
-    return data.filter(bp => bp.diastole > 0).map(bp => {
-      return {x: this.diff(baseDate, bp.timestamp), y: bp.diastole};
+    return data
+      .filter(bp => bp.diastole > 0)
+      .map(bp => {
+        return {
+          x: this.diff(baseDate, bp.timestamp),
+          y: bp.diastole
+        };
     });
   }
 
